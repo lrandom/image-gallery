@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <div class="wrapper">
+       <div class="preview">
+           <div class="item" th:each="image : ${images}">
+               <img th:src="@{${image.getPath()}}" alt="">
+               <a class="btn-delete" th:href="@{/delete-image(id=${image.getId()})}">X</a>
+           </div>
+
+       </div>
+
+       <form method="post" enctype="multipart/form-data" action="/do-upload-file">
+           <input type="file" name="image"/>
+           <button>Upload</button>
+       </form>
+   </div>
+
+   <style>
+       .wrapper{
+           width:80%;
+           border:1px solid red;
+           margin: auto;
+       }
+
+       .wrapper > .preview{
+           height: 500px;
+           border:1px solid red;
+           overflow: scroll;
+       }
+
+       .wrapper > .preview > .item{
+           width:18%;
+           border:1px solid red;
+           height: 100px;
+           float:left;
+           margin-left: 11px;
+           position: relative;
+           overflow: hidden;
+           margin-top: 10px;
+       }
+
+       .wrapper > .preview > .item > img{
+           width:100%;
+       }
+
+       .wrapper > .preview > .item > .btn-delete{
+           position: absolute;
+           color: white;
+           z-index: 10000;
+           right: 0px;
+           top: 0px;
+       }
+   </style>
+</body>
+</html>
